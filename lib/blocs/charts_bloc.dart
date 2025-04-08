@@ -42,8 +42,8 @@ class ChartsBloc extends Cubit<ChartsState> {
         'albums',
       );
 
-      print('Singles response: ${singlesResponse.tracks?.length}');
-      print('Albums response: ${albumsResponse.albums?.length}');
+      //print('Singles response: ${singlesResponse.tracks?.length}');
+      //print('Albums response: ${albumsResponse.albums?.length}');
 
       emit(
         ChartsState(

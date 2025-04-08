@@ -51,7 +51,7 @@ class TrackItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 13,
+              fontSize: 16,
             ),
           ),
           Text(
@@ -60,7 +60,7 @@ class TrackItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               color: Colors.grey[600],
-              fontSize: 12,
+              fontSize: 14,
             ),
           ),
         ],

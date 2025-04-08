@@ -113,7 +113,7 @@ class _RootPageState extends State<RootPage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up),
+            icon: Icon(Icons.poll_sharp),
             label: 'Classements',
           ),
           BottomNavigationBarItem(
@@ -121,7 +121,7 @@ class _RootPageState extends State<RootPage> {
             label: 'Recherche',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: Icon(Icons.view_week_sharp ),
             label: 'Favoris',
           ),
         ],
