@@ -6,7 +6,7 @@ import '../blocs/search_bloc.dart';
 import '../models/artist.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,8 @@ class SearchPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: SearchBar(),
               ),
               Expanded(
@@ -62,6 +62,8 @@ class SearchPage extends StatelessWidget {
 }
 
 class SearchBar extends StatelessWidget {
+  const SearchBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -84,10 +86,10 @@ class ArtistListItem extends StatelessWidget {
   final VoidCallback onTap;
 
   const ArtistListItem({
-    Key? key,
+    super.key,
     required this.artist,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

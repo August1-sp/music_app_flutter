@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/api/audiodb_api.dart';
 import 'package:music_app/models/album.dart';
-import 'package:music_app/widgets/album_item.dart';
-import 'package:music_app/widgets/track_item.dart';
 import '../blocs/charts_bloc.dart';
 import '../models/track.dart';
 
