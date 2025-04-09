@@ -20,10 +20,7 @@ final GoRouter router = GoRouter(
         return RootPage(child: child);
       },
       routes: [
-        GoRoute(
-          path: '/',
-          builder: (context, state) => const ChartsPage(),
-        ),
+        GoRoute(path: '/', builder: (context, state) => const ChartsPage()),
         GoRoute(
           path: '/search',
           builder: (context, state) => const SearchPage(),
@@ -34,15 +31,14 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           path: '/artist/:id',
-          builder: (context, state) => ArtistPage(
-            artistId: state.pathParameters['id']!,
-          ),
+          builder:
+              (context, state) =>
+                  ArtistPage(artistId: state.pathParameters['id']!),
         ),
       ],
     ),
   ],
 );
-
 
 void main() {
   runApp(const MyApp());
@@ -70,11 +66,8 @@ class MyApp extends StatelessWidget {
 
 class RootPage extends StatefulWidget {
   final Widget child;
-  
-  const RootPage({
-    super.key,
-    required this.child,
-  });
+
+  const RootPage({super.key, required this.child});
 
   @override
   State<RootPage> createState() => _RootPageState();
@@ -116,12 +109,9 @@ class _RootPageState extends State<RootPage> {
             icon: Icon(Icons.poll_sharp),
             label: 'Classements',
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Recherche'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Recherche',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.view_week_sharp ),
+            icon: Icon(Icons.view_week_sharp),
             label: 'Favoris',
           ),
         ],

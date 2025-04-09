@@ -28,6 +28,9 @@ abstract class AudioDbService {
   @GET("/search.php")
   Future<BaseApiResponse> searchArtists(@Query("s") String query);
 
+  @GET("/searchalbum.php")
+  Future<BaseApiResponse> searchAlbums(@Query("s") String query);
+
   @GET("/artist.php")
   Future<BaseApiResponse> getArtist(@Query("i") String id);
 
