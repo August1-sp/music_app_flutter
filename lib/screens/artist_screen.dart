@@ -7,9 +7,9 @@ class ArtistPage extends StatelessWidget {
   final String artistId;
 
   const ArtistPage({
-    Key? key,
+    super.key,
     required this.artistId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

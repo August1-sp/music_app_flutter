@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:music_app/api/audiodb_api.dart';
+import 'package:music_app/screens/album_screen.dart';
 import 'package:music_app/screens/artist_screen.dart';
 import 'package:music_app/screens/charts_screen.dart';
 import 'package:music_app/screens/favorites_screen.dart';
@@ -20,7 +21,16 @@ final GoRouter router = GoRouter(
         return RootPage(child: child);
       },
       routes: [
-        GoRoute(path: '/', builder: (context, state) => const ChartsPage()),
+        GoRoute(
+          path: '/album/:id',
+          builder: (context, state) => AlbumPage(
+            albumId: state.pathParameters['id']!,
+          ),
+        ),
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const ChartsPage(),
+        ),
         GoRoute(
           path: '/search',
           builder: (context, state) => const SearchPage(),
@@ -31,14 +41,15 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           path: '/artist/:id',
-          builder:
-              (context, state) =>
-                  ArtistPage(artistId: state.pathParameters['id']!),
+          builder: (context, state) => ArtistPage(
+            artistId: state.pathParameters['id']!,
+          ),
         ),
       ],
     ),
   ],
 );
+
 
 void main() {
   runApp(const MyApp());
@@ -66,8 +77,11 @@ class MyApp extends StatelessWidget {
 
 class RootPage extends StatefulWidget {
   final Widget child;
-
-  const RootPage({super.key, required this.child});
+  
+  const RootPage({
+    super.key,
+    required this.child,
+  });
 
   @override
   State<RootPage> createState() => _RootPageState();
@@ -106,12 +120,15 @@ class _RootPageState extends State<RootPage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.poll_sharp),
+            icon: Icon(Icons.trending_up),
             label: 'Classements',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Recherche'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.view_week_sharp),
+            icon: Icon(Icons.search),
+            label: 'Recherche',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
             label: 'Favoris',
           ),
         ],

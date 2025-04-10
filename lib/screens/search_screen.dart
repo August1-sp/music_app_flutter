@@ -7,7 +7,7 @@ import '../models/artist.dart';
 import '../models/album.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,8 @@ class SearchPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: SearchBar(),
               ),
               const Padding(
@@ -205,6 +205,8 @@ class SearchPage extends StatelessWidget {
 }
 
 class SearchBar extends StatelessWidget {
+  const SearchBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController controller = TextEditingController();
@@ -269,8 +271,11 @@ class ArtistListItem extends StatelessWidget {
   final Artist artist;
   final VoidCallback onTap;
 
-  const ArtistListItem({Key? key, required this.artist, required this.onTap})
-    : super(key: key);
+  const ArtistListItem({
+    super.key,
+    required this.artist,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

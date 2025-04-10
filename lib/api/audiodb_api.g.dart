@@ -139,6 +139,39 @@ class _AudioDbService implements AudioDbService {
   }
 
   @override
+  Future<BaseApiResponse> getAlbum(String albumId) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'm': albumId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<BaseApiResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/album.php',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseApiResponse _value;
+    try {
+      _value = BaseApiResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<BaseApiResponse> searchArtists(String query) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r's': query};
