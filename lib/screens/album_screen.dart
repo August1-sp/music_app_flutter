@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../api/audiodb_api.dart';
 import '../blocs/album_bloc.dart';
-import '../models/track.dart';
-import '../blocs/album_bloc.dart';
-import '../models/track.dart';
 
 class AlbumPage extends StatelessWidget {
   final String albumId;

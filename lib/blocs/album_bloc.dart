@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../api/audiodb_api.dart';
 import '../models/album.dart';
-import '../models/track.dart';
 
 enum AlbumStatus { initial, loading, success, failure }
 
