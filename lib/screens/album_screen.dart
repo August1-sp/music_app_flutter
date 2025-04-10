@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../api/audiodb_api.dart';
+import '../blocs/album_bloc.dart';
+import '../models/track.dart';
 import '../blocs/album_bloc.dart';
 import '../models/track.dart';
 
@@ -79,7 +84,7 @@ class AlbumPage extends StatelessWidget {
                                 children: [
                                   IconButton(
                                     icon: const Icon(Icons.arrow_back, color: Colors.white),
-                                    onPressed: () => Navigator.pop(context),
+                                    onPressed: () => context.go('/'),
                                   ),
                                   const Spacer(),
                                   IconButton(
