@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:music_app/api/audiodb_api.dart';
+import 'package:music_app/screens/album_screen.dart';
 import 'package:music_app/screens/artist_screen.dart';
 import 'package:music_app/screens/charts_screen.dart';
 import 'package:music_app/screens/favorites_screen.dart';
@@ -20,6 +21,12 @@ final GoRouter router = GoRouter(
         return RootPage(child: child);
       },
       routes: [
+        GoRoute(
+          path: '/album/:id',
+          builder: (context, state) => AlbumPage(
+            albumId: state.pathParameters['id']!,
+          ),
+        ),
         GoRoute(
           path: '/',
           builder: (context, state) => const ChartsPage(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:music_app/api/audiodb_api.dart';
 import 'package:music_app/models/album.dart';
 import '../blocs/charts_bloc.dart';
@@ -223,6 +224,7 @@ class _ChartsPageState extends State<ChartsPage> with SingleTickerProviderStateM
               fontSize: 13,
             ),
           ),
+          onTap: () => context.go('/album/${album.id}'),
         );
       },
     );
