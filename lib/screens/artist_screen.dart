@@ -48,37 +48,94 @@ class ArtistPage extends StatelessWidget {
               return const Center(child: Text('Artiste non trouvé'));
             }
 
+            final artist = state.artist!;
+
             return CustomScrollView(
               slivers: [
                 SliverAppBar(
-                  expandedHeight: 200,
+                  expandedHeight: 250,
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
-                    title: Text(state.artist!.name),
-                    background: state.artist!.thumbnailUrl != null
-                        ? Image.network(
-                            state.artist!.thumbnailUrl!,
+                    background: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        if (artist.thumbnailUrl != null)
+                          Image.network(
+                            artist.thumbnailUrl!,
                             fit: BoxFit.cover,
                           )
-                        : Container(color: Colors.grey),
-                  ),
-                  actions: [
-                    IconButton(
-                      icon: const Icon(Icons.favorite_border),
-                      onPressed: () {
-                        final favoritesBloc = context.read<FavoritesBloc>();
-                        if (favoritesBloc.isFavorite(state.artist!.id)) {
-                          favoritesBloc.removeFavorite(state.artist!.id);
-                        } else {
-                          favoritesBloc.addFavorite(FavoriteArtist(
-                            id: state.artist!.id,
-                            name: state.artist!.name,
-                            thumbnailUrl: state.artist!.thumbnailUrl,
-                          ));
-                        }
-                      },
+                        else
+                          Container(color: Colors.grey[400]),
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.black.withOpacity(0.6),
+                                Colors.transparent,
+                                Colors.black.withOpacity(0.6),
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                                    onPressed: () => Navigator.pop(context),
+                                  ),
+                                  const Spacer(),
+                                  BlocBuilder<FavoritesBloc, FavoritesState>(
+                                    builder: (context, favState) {
+                                      final isFavorite = favState.artists.any(
+                                        (a) => a.id == artist.id,
+                                      );
+                                      return IconButton(
+                                        icon: Icon(
+                                          isFavorite ? Icons.favorite : Icons.favorite_border,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {
+                                          final favoritesBloc = context.read<FavoritesBloc>();
+                                          if (favoritesBloc.isFavorite(artist.id)) {
+                                            favoritesBloc.removeFavorite(artist.id);
+                                          } else {
+                                            favoritesBloc.addFavorite(FavoriteArtist(
+                                              id: artist.id,
+                                              name: artist.name,
+                                              thumbnailUrl: artist.thumbnailUrl,
+                                            ));
+                                          }
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
+                              Center(
+                                child: Text(
+                                  artist.name,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
@@ -86,14 +143,13 @@ class ArtistPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (state.artist!.genre != null ||
-                            state.artist!.country != null)
+                        if (artist.genre != null || artist.country != null)
                           Padding(
                             padding: const EdgeInsets.only(bottom: 16.0),
                             child: Text(
                               [
-                                state.artist!.genre,
-                                state.artist!.country,
+                                artist.genre,
+                                artist.country,
                               ].where((e) => e != null).join(' • '),
                               style: TextStyle(
                                 color: Colors.grey[600],
@@ -110,8 +166,8 @@ class ArtistPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          state.artist!.biographyFr ??
-                              state.artist!.biographyEn ??
+                          artist.biographyFr ??
+                              artist.biographyEn ??
                               'Aucune biographie disponible',
                           style: const TextStyle(fontSize: 16),
                         ),
