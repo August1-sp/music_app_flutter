@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'favorites.dart';
+part of 'album_favorites.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

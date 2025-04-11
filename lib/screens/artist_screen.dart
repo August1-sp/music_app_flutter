@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/api/audiodb_api.dart';
+import 'package:music_app/blocs/album_favorites_bloc.dart';
+import 'package:music_app/models/album_favorites.dart';
 import '../blocs/artist_bloc.dart';
 
 class ArtistPage extends StatelessWidget {
@@ -64,7 +66,16 @@ class ArtistPage extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.favorite_border),
                       onPressed: () {
-                        // TODO: Implement favorites
+                        final favoritesBloc = context.read<FavoritesBloc>();
+                        if (favoritesBloc.isFavorite(state.artist!.id)) {
+                          favoritesBloc.removeFavorite(state.artist!.id);
+                        } else {
+                          favoritesBloc.addFavorite(FavoriteArtist(
+                            id: state.artist!.id,
+                            name: state.artist!.name,
+                            thumbnailUrl: state.artist!.thumbnailUrl,
+                          ));
+                        }
                       },
                     ),
                   ],

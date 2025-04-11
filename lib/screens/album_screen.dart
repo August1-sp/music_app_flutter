@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:music_app/blocs/favorites_bloc.dart';
+import 'package:music_app/blocs/album_favorites_bloc.dart';
 import '../api/audiodb_api.dart';
 import '../blocs/album_bloc.dart';
-import '../models/favorites.dart';
+import '../models/album_favorites.dart';
 
 class AlbumPage extends StatelessWidget {
   final String albumId;
@@ -186,7 +186,7 @@ class AlbumPage extends StatelessWidget {
                                 ? Text(track.artist)
                                 : null,
                           );
-                        }).toList(),
+                        }),
                       ],
                     ),
                   ),

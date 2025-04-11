@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:music_app/api/audiodb_api.dart';
-import 'package:music_app/blocs/favorites_bloc.dart';
+import 'package:music_app/blocs/album_favorites_bloc.dart';
 import 'package:music_app/screens/album_screen.dart';
 import 'package:music_app/screens/artist_screen.dart';
 import 'package:music_app/screens/charts_screen.dart';
@@ -10,9 +10,7 @@ import 'package:music_app/screens/favorites_screen.dart';
 import 'package:music_app/screens/search_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:music_app/models/favorites.dart';
-import 'package:music_app/models/favorites.dart';
-import 'package:hive/hive.dart';
+import 'package:music_app/models/album_favorites.dart';
 
 final dio = Dio();
 

@@ -19,8 +19,8 @@ class SearchPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, top: 44.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 15.0, top: 44.0),
                 child: SizedBox(
                   width: 200,
                   height: 40,
@@ -31,7 +31,7 @@ class SearchPage extends StatelessWidget {
                       fontSize: 36,
                       height: 40 / 36,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFF000000),
+                      color: Color(0xFF000000),
                     ),
                   ),
                 ),
@@ -61,8 +61,8 @@ class SearchPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (state.artists.isNotEmpty) ...[
-                              Padding(
-                                padding: const EdgeInsets.only(
+                              const Padding(
+                                padding: EdgeInsets.only(
                                   left: 15.0,
                                   top: 16.0,
                                 ),
@@ -77,15 +77,15 @@ class SearchPage extends StatelessWidget {
                                         height: 28 / 24,
                                         letterSpacing: -0.2,
                                         fontWeight: FontWeight.w800,
-                                        color: const Color(0xFF000000),
+                                        color: Color(0xFF000000),
                                       ),
                                     ),
-                                    const SizedBox(height: 8),
+                                    SizedBox(height: 8),
                                     Padding(
-                                      padding: const EdgeInsets.only(
+                                      padding: EdgeInsets.only(
                                         right: 15.0,
                                       ),
-                                      child: const Divider(
+                                      child: Divider(
                                         height: 1,
                                         thickness: 1,
                                         color: Color(0xFFE5E5E5),
@@ -125,8 +125,8 @@ class SearchPage extends StatelessWidget {
                               ),
                             ],
                             if (state.albums.isNotEmpty) ...[
-                              Padding(
-                                padding: const EdgeInsets.only(
+                              const Padding(
+                                padding: EdgeInsets.only(
                                   left: 15.0,
                                   top: 24.0,
                                 ),
@@ -141,15 +141,15 @@ class SearchPage extends StatelessWidget {
                                         height: 28 / 24,
                                         letterSpacing: -0.2,
                                         fontWeight: FontWeight.w800,
-                                        color: const Color(0xFF000000),
+                                        color: Color(0xFF000000),
                                       ),
                                     ),
-                                    const SizedBox(height: 8),
+                                    SizedBox(height: 8),
                                     Padding(
-                                      padding: const EdgeInsets.only(
+                                      padding: EdgeInsets.only(
                                         right: 15.0,
                                       ),
-                                      child: const Divider(
+                                      child: Divider(
                                         height: 1,
                                         thickness: 1,
                                         color: Color(0xFFE5E5E5),
@@ -333,8 +333,7 @@ class AlbumListItem extends StatelessWidget {
   final Album album;
   final VoidCallback onTap;
 
-  const AlbumListItem({Key? key, required this.album, required this.onTap})
-    : super(key: key);
+  const AlbumListItem({super.key, required this.album, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

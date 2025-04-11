@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../blocs/favorites_bloc.dart';
+import '../blocs/album_favorites_bloc.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});

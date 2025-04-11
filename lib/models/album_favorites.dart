@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'favorites.g.dart';
+part 'album_favorites.g.dart';
 @HiveType(typeId: 0)
 @JsonSerializable()
 class FavoriteArtist {
