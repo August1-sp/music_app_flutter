@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:music_app/api/audiodb_api.dart';
 import 'package:music_app/blocs/album_favorites_bloc.dart';
 import 'package:music_app/models/album_favorites.dart';
@@ -88,7 +89,7 @@ class ArtistPage extends StatelessWidget {
                                 children: [
                                   IconButton(
                                     icon: const Icon(Icons.arrow_back, color: Colors.white),
-                                    onPressed: () => Navigator.pop(context),
+                                    onPressed: () => context.go('/'),
                                   ),
                                   const Spacer(),
                                   BlocBuilder<FavoritesBloc, FavoritesState>(
