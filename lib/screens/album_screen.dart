@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:music_app/blocs/favorites_bloc.dart';
 import '../api/audiodb_api.dart';
 import '../blocs/album_bloc.dart';
+import '../models/favorites.dart';
 
 class AlbumPage extends StatelessWidget {
   final String albumId;
@@ -83,11 +85,28 @@ class AlbumPage extends StatelessWidget {
                                   ),
                                   const Spacer(),
                                   IconButton(
-                                    icon: const Icon(Icons.favorite_border, color: Colors.white),
-                                    onPressed: () {
-                                      // TODO: favoris
-                                    },
-                                  ),
+                                     icon: BlocBuilder<FavoritesBloc, FavoritesState>(
+                                       builder: (context, state) {
+                                         final isFavorite = state.artists.any((artist) => artist.id == album.artist);
+                                         return Icon(
+                                           isFavorite ? Icons.favorite : Icons.favorite_border,
+                                           color: Colors.white,
+                                         );
+                                       },
+                                     ),
+                                     onPressed: () {
+                                       final favoritesBloc = context.read<FavoritesBloc>();
+                                       if (favoritesBloc.isFavorite(album.artist)) {
+                                         favoritesBloc.removeFavorite(album.artist);
+                                       } else {
+                                         favoritesBloc.addFavorite(FavoriteArtist(
+                                           id: album.artist,
+                                           name: album.artist,
+                                           thumbnailUrl: album.thumbnailUrl,
+                                         ));
+                                       }
+                                     },
+                                   ),
                                 ],
                               ),
                               const Spacer(),

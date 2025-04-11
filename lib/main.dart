@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:music_app/api/audiodb_api.dart';
+import 'package:music_app/blocs/favorites_bloc.dart';
 import 'package:music_app/screens/album_screen.dart';
 import 'package:music_app/screens/artist_screen.dart';
 import 'package:music_app/screens/charts_screen.dart';
 import 'package:music_app/screens/favorites_screen.dart';
 import 'package:music_app/screens/search_screen.dart';
 import 'package:dio/dio.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:music_app/models/favorites.dart';
+import 'package:music_app/models/favorites.dart';
+import 'package:hive/hive.dart';
 
 final dio = Dio();
 
@@ -50,9 +55,25 @@ final GoRouter router = GoRouter(
   ],
 );
 
-
-void main() {
+/*void main() {
   runApp(const MyApp());
+}*/
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  
+  if (!Hive.isAdapterRegistered(0)) {
+    Hive.registerAdapter(FavoriteArtistAdapter());
+  }
+  
+  final favoritesBox = await Hive.openBox<FavoriteArtist>('favorites');
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(create: (context) => FavoritesBloc(favoritesBox)),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
